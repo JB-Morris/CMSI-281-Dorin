@@ -126,12 +126,10 @@ public class BaseConverter {
     private long baseTen(long[] digits, long base) {
         long baseTenValue = 0;
         for(int i = 0; i < digits.length; i++){
-            System.out.println(i);
             if(i > 0){
                 baseTenValue = shiftLeft(baseTenValue, base);
             }
             baseTenValue += digits[i];
-            System.out.println(baseTenValue);
         }
         return baseTenValue;
     }
