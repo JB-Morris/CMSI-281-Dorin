@@ -129,7 +129,7 @@ public class BaseConverter {
             if(i > 0){
                 baseTenValue = shiftLeft(baseTenValue, base);
             }
-            baseTenValue += digits[i];    
+            baseTenValue += digits[i];
         }
         return baseTenValue;
     }
@@ -137,6 +137,10 @@ public class BaseConverter {
     private ArrayList<Integer> toEndBase(int baseTen, int newBase){
         int b10 = baseTen;
         ArrayList<Integer> baseXList = new ArrayList<Integer>();
+        if(b10 == 0){
+            baseXList.add(b10);
+            return baseXList;
+        }
         while(b10 != 0){
             baseXList.add(b10 % newBase);
             b10 = b10 / newBase;            
