@@ -40,16 +40,16 @@ import java.util.Stack;
 
 public class BaseConverter {
 
-	private int startingBase;
-	private int endBase;
-    private int[] values;
-    private int numberOfDigits;
-    private static final int BASE_TEN = 10;
+	private long startingBase;
+	private long endBase;
+    private long[] values;
+    private long numberOfDigits;
+    private static final long BASE_TEN = 10;
 
     /** This method attempts to validate the command-line arguments. If they're
         okay, it returns true; otherwise, it returns false. */
 
-    public BaseConverter(String values, int b1, int b2){
+    public BaseConverter(String values, long b1, long b2){
         // this.startingBase = b1;
         this.setStartingBase(b1);
         // this.endBase = b2;
@@ -58,7 +58,7 @@ public class BaseConverter {
         this.setValues(inputConverter(values));
     }
 
-    public BaseConverter(String values, int b1){
+    public BaseConverter(String values, long b1){
         // this.startingBase = b1;
         this.setStartingBase(b1);
         // this.endBase = 10;
@@ -67,7 +67,7 @@ public class BaseConverter {
         this.setValues(inputConverter(values));
     }
 
-    public String run(int[] values, int b2){
+    public String run(long[] values, long b2){
         // return returnString(toEndBase(baseTen(this.values, this.startingBase), this.endBase));
         return returnString(toEndBase(baseTen(this.getValues(), this.getStartingBase()), this.getEndBase()));
 
@@ -80,17 +80,17 @@ public class BaseConverter {
         }
         if(args.length > 2){
             try {
-                Integer.parseInt(args[2]);
+                Long.parseLong(args[2]);
             }catch (NumberFormatException e){
                 return false;
             }
         }
         try {
-            Integer.parseInt(args[1]);
+            Long.parseLong(args[1]);
         }catch (NumberFormatException e){
             return false;
         }
-        if ((Integer.parseInt(args[1]) < 2 || (args.length > 2 && Integer.parseInt(args[2]) < 2))) {
+        if ((Long.parseLong(args[1]) < 2 || (args.length > 2 && Long.parseLong(args[2]) < 2))) {
         	return false;
         }
         if (!(balanceCheck(args[0]))){
@@ -99,13 +99,13 @@ public class BaseConverter {
         return true;
     }
  
-    private int[] inputConverter(String s) {
-    	// converts args into list of int values
-    	int stiringLength = s.length();
+    private long[] inputConverter(String s) {
+    	// converts args longo list of long values
+    	long stiringLength = s.length();
         int numberOfValues = digitCounter(s);
-    	int[] valueList = new int[numberOfValues];
+    	long[] valueList = new long[numberOfValues];
     	int currentValueListIndex = 0;
-    	int currentCharacter;
+    	long currentCharacter;
     	for (int i = 0; i < stiringLength; i++) {
     		if ((s.charAt(i) != '[') && (s.charAt(i) != ']')){
     			currentCharacter = Character.getNumericValue(s.charAt(i));
@@ -123,20 +123,22 @@ public class BaseConverter {
     	return valueList;
     }
 
-    private int baseTen(int[] digits, int base) {
-        int baseTenValue = 0;
+    private long baseTen(long[] digits, long base) {
+        long baseTenValue = 0;
         for(int i = 0; i < digits.length; i++){
+            System.out.println(i);
             if(i > 0){
                 baseTenValue = shiftLeft(baseTenValue, base);
             }
             baseTenValue += digits[i];
+            System.out.println(baseTenValue);
         }
         return baseTenValue;
     }
 
-    private ArrayList<Integer> toEndBase(int baseTen, int newBase){
-        int b10 = baseTen;
-        ArrayList<Integer> baseXList = new ArrayList<Integer>();
+    private ArrayList<Long> toEndBase(long baseTen, long newBase){
+        long b10 = baseTen;
+        ArrayList<Long> baseXList = new ArrayList<Long>();
         if(b10 == 0){
             baseXList.add(b10);
             return baseXList;
@@ -149,7 +151,7 @@ public class BaseConverter {
         return baseXList;
     }
 
-    private String returnString(ArrayList<Integer> resultList){
+    private String returnString(ArrayList<Long> resultList){
         StringBuilder result = new StringBuilder();
         for(int i = (resultList.size() - 1); i >= 0; i--){
             result.append('[');
@@ -159,13 +161,13 @@ public class BaseConverter {
         return result.toString();
     }
 
-    private int shiftLeft(int x){
-    	int result = x * 10;
+    private long shiftLeft(long x){
+    	long result = x * 10;
     	return result;
     }
 
-    private int shiftLeft(int x, int base){
-        int result = x * base;
+    private long shiftLeft(long x, long base){
+        long result = x * base;
         return result;
     }
 
@@ -208,35 +210,35 @@ public class BaseConverter {
         return false;
     }
 
-    private void setStartingBase(int b){
+    private void setStartingBase(long b){
         this.startingBase = b;
     }
 
-    private void setEndBase(int b){
+    private void setEndBase(long b){
         this.endBase = b;
     }
 
-    private void setValues(int[] v){
+    private void setValues(long[] v){
         this.values = v;
     }
 
-    private void setNumberOfDigits(int d){
+    private void setNumberOfDigits(long d){
         this.numberOfDigits = d;
     }
 
-    private int getStartingBase(){
+    private long getStartingBase(){
         return this.startingBase;
     }
 
-    private int getEndBase(){
+    private long getEndBase(){
         return this.endBase;
     }
 
-    private int[] getValues(){
+    private long[] getValues(){
         return this.values;
     }
 
-    private int getNumberOfDigits(){
+    private long getNumberOfDigits(){
         return this.numberOfDigits;
     }  
 
@@ -250,11 +252,11 @@ public class BaseConverter {
         else {
             // YOUR CODE GOES HERE
             if (args.length == 2){
-                BaseConverter baseConverter = new BaseConverter(args[0], Integer.parseInt(args[1]));
+                BaseConverter baseConverter = new BaseConverter(args[0], Long.parseLong(args[1]));
                 // System.out.println(baseConverter.run(baseConverter.values, baseConverter.endBase));
                 System.out.println(baseConverter.run(baseConverter.getValues(), baseConverter.getEndBase()));
             }else if (args.length == 3){
-                BaseConverter baseConverter = new BaseConverter(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+                BaseConverter baseConverter = new BaseConverter(args[0], Long.parseLong(args[1]), Long.parseLong(args[2]));
                 // System.out.println(baseConverter.run(baseConverter.values, baseConverter.endBase));
                 System.out.println(baseConverter.run(baseConverter.getValues(), baseConverter.getEndBase()));
             }else throw new IllegalArgumentException("Too many inputs");
