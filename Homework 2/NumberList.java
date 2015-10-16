@@ -742,7 +742,18 @@ public class NumberList implements java.util.Collection {
         System.out.println("");
         System.out.println("Testing toArray()");
 
-        System.out.println(java.util.Arrays.toString(testList9.toArray()));        
+        Long[] testarr8 = new Long[5];
+        testarr8[0] = 1L;
+        testarr8[1] = 2L;
+        testarr8[2] = 3L;
+        testarr8[3] = 4L;
+        testarr8[4] = 5L;
+
+        if(java.util.Arrays.toString(testList9.toArray()).equals(java.util.Arrays.toString(testarr8))){
+            System.out.println("success");
+        }else System.out.println("failure");
+
+        // System.out.println(java.util.Arrays.toString(testList9.toArray()));        
 
         System.out.println("");
         System.out.println("Testing toString()");
