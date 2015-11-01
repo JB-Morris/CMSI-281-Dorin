@@ -52,7 +52,7 @@ public class LinkedDeque<T> {
 
 	public void deleteLeft() {
 		if(this.head == null){
-			throw new IllegalStateException("Cannot delete from an empty list.");
+			throw new IllegalStateException("Cannot delete from an empty deque.");
 		}
 		if(this.head.hasNext()){
 			this.head = this.head.getNext();
@@ -69,7 +69,7 @@ public class LinkedDeque<T> {
 
 	public void deleteRight() {
 		if(this.head == null){
-			throw new IllegalStateException("Cannot delete from an empty list.");
+			throw new IllegalStateException("Cannot delete from an empty deque.");
 		}
 		if(this.size == 1){
 			this.head = null;
@@ -85,11 +85,17 @@ public class LinkedDeque<T> {
 	}
 
 	public T left() {
+		if(this.size == 0){
+			throw new IllegalStateException("Cannot return element from empty deque.");
+		}
 		return this.head.getValue();
 		// throw new UnsupportedOperationException();
 	}
 
 	public T right() {
+		if(this.size == 0){
+			throw new IllegalStateException("Cannot return element from empty deque.");
+		}
 		return this.current.getValue();
 		// throw new UnsupportedOperationException();
 	}
@@ -120,10 +126,48 @@ public class LinkedDeque<T> {
 
 		LinkedDeque<Integer> lDeque = new LinkedDeque<Integer>();
 		lDeque.insertLeft(5);
+		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
 		lDeque.insertLeft(6);
+		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
 		lDeque.insertRight(4);
+		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
 		lDeque.deleteRight();
 		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
+		lDeque.deleteLeft();
+		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
+		System.out.println(lDeque.left());
+		System.out.println(lDeque.right());
+		lDeque.insertLeft(4);
+		lDeque.insertRight(6);
+		System.out.println(lDeque.left());
+		System.out.println(lDeque.right());
+		lDeque.insertLeft(3);
+		lDeque.insertRight(7);
+		lDeque.insertLeft(2);
+		lDeque.insertRight(8);
+		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
+		lDeque.deleteRight();
+		lDeque.deleteLeft();
+		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
+		lDeque.deleteRight();
+		lDeque.deleteRight();
+		lDeque.deleteRight();
+		lDeque.deleteRight();
+		lDeque.deleteRight();
+		System.out.println(lDeque.toString());
+		System.out.println("Size: " + lDeque.size());
+
+		
+		// System.out.println(lDeque.left());
+		// System.out.println(lDeque.right());
+		// lDeque.deleteRight();
 		// throw new UnsupportedOperationException();
 	}
 
