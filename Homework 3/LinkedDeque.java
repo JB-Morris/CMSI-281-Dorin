@@ -1,8 +1,6 @@
 import java.lang.IllegalArgumentException;
 import java.lang.Exception;
 import java.lang.IllegalStateException;
-import java.util.Arrays;
-import java.lang.StringBuilder;
 
 public class LinkedDeque<T> {
 
@@ -107,17 +105,17 @@ public class LinkedDeque<T> {
 
 	public String toString() {
 
-		StringBuilder output = new StringBuilder("[");
+		String output = new String("[");
 		Node<T> stringNode = this.head;
 		for(int i = 0; i < this.size; i++){
-			output.append(stringNode.getValue().toString());
+			output = output + stringNode.getValue().toString();
 			if(i < this.size - 1){
-				output.append(", ");
+				output = output + ", ";
 			}
 			stringNode = stringNode.getNext();
 		}
-		output.append("]");
-		return output.toString();
+		output = output + "]";
+		return output;
 
 		// throw new UnsupportedOperationException();
 	}
@@ -163,7 +161,6 @@ public class LinkedDeque<T> {
 		lDeque.deleteRight();
 		System.out.println(lDeque.toString());
 		System.out.println("Size: " + lDeque.size());
-
 		
 		// System.out.println(lDeque.left());
 		// System.out.println(lDeque.right());
