@@ -27,13 +27,10 @@ public class LinkedDeque<T> {
 			this.head = this.head.getPrevious();
 			this.size++;
 		}
-		
-		// throw new UnsupportedOperationException();
 	}
 
 	public void insertRight (T o) {
 		Node<T> newNode = new Node<T>(o);
-
 		if(this.size == 0){
 			this.head = newNode;
 			this.current = this.head;
@@ -43,9 +40,7 @@ public class LinkedDeque<T> {
 			this.current.setNext(newNode);
 			this.current = this.current.getNext();
 			this.size++;
-
 		}
-		// throw new UnsupportedOperationException();
 	}
 
 	public void deleteLeft() {
@@ -61,8 +56,6 @@ public class LinkedDeque<T> {
 			this.current = null;
 			this.size = 0;
 		}
-		
-		// throw new UnsupportedOperationException();
 	}
 
 	public void deleteRight() {
@@ -78,8 +71,6 @@ public class LinkedDeque<T> {
 			this.current.setNext(null);
 			this.size--;
 		}
-
-		// throw new UnsupportedOperationException();
 	}
 
 	public T left() {
@@ -87,7 +78,6 @@ public class LinkedDeque<T> {
 			throw new IllegalStateException("Cannot return element from empty deque.");
 		}
 		return this.head.getValue();
-		// throw new UnsupportedOperationException();
 	}
 
 	public T right() {
@@ -95,29 +85,21 @@ public class LinkedDeque<T> {
 			throw new IllegalStateException("Cannot return element from empty deque.");
 		}
 		return this.current.getValue();
-		// throw new UnsupportedOperationException();
 	}
 
 	public int size() {
 		return this.size;
-		// throw new UnsupportedOperationException();
 	}
 
 	public String toString() {
 
-		String output = new String("[");
+		String output = new String("");
 		Node<T> stringNode = this.head;
 		for(int i = 0; i < this.size; i++){
-			output = output + stringNode.getValue().toString();
-			if(i < this.size - 1){
-				output = output + ", ";
-			}
+			output = output + "[" + stringNode.getValue().toString() + "]";
 			stringNode = stringNode.getNext();
 		}
-		output = output + "]";
 		return output;
-
-		// throw new UnsupportedOperationException();
 	}
 
 	public static void main(String[] args) {
@@ -208,6 +190,5 @@ public class LinkedDeque<T> {
 			}
 			return true;
 		}
-
 	}
 }
