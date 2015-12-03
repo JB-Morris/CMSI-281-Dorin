@@ -255,7 +255,7 @@ public class BinaryTree implements java.lang.Iterable{
 			}
 			testCounter++;
 		}
-		test(testBool);
+		test(testBool && (testCounter == 5));
 		testBool = true;
 		testCounter = 0;
 		preOrderArray = new int[]{0,1,4,3,2};
@@ -266,7 +266,7 @@ public class BinaryTree implements java.lang.Iterable{
 			}
 			testCounter++;
 		}
-		test(testBool);
+		test(testBool && (testCounter == 5));
 		testBool = true;
 		testCounter = 0;
 		
@@ -276,13 +276,13 @@ public class BinaryTree implements java.lang.Iterable{
 		InIterator iNterator = testTree.inOrder();
 
 		while(iNterator.hasNext()){
-			System.out.println(iNterator.next());
-			// if(!(iNterator.next().equals(inOrderArray[testCounter]))){
-			// 	testBool = false;
-			// }
+			// System.out.println(iNterator.next());
+			if(!(iNterator.next().equals(inOrderArray[testCounter]))){
+				testBool = false;
+			}
 			testCounter++;
 		}
-		test(testBool);
+		test(testBool && (testCounter == 5));
 		testCounter = 0;
 		testBool = true;
 		iNterator = testTree2.inOrder();
@@ -294,7 +294,7 @@ public class BinaryTree implements java.lang.Iterable{
 			}
 			testCounter++;	
 		}
-		test(testBool);
+		test(testBool && (testCounter == 5));
 
 
 	}
