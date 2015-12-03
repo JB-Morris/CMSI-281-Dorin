@@ -1,8 +1,6 @@
 import java.lang.IllegalArgumentException;
 import java.lang.Exception;
 import java.lang.IllegalStateException;
-import java.util.Arrays;
-import java.lang.StringBuilder;
 
 public class LinkedDeque<T> {
 
@@ -29,13 +27,10 @@ public class LinkedDeque<T> {
 			this.head = this.head.getPrevious();
 			this.size++;
 		}
-		
-		// throw new UnsupportedOperationException();
 	}
 
 	public void insertRight (T o) {
 		Node<T> newNode = new Node<T>(o);
-
 		if(this.size == 0){
 			this.head = newNode;
 			this.current = this.head;
@@ -45,9 +40,7 @@ public class LinkedDeque<T> {
 			this.current.setNext(newNode);
 			this.current = this.current.getNext();
 			this.size++;
-
 		}
-		// throw new UnsupportedOperationException();
 	}
 
 	public void deleteLeft() {
@@ -63,8 +56,6 @@ public class LinkedDeque<T> {
 			this.current = null;
 			this.size = 0;
 		}
-		
-		// throw new UnsupportedOperationException();
 	}
 
 	public void deleteRight() {
@@ -80,8 +71,6 @@ public class LinkedDeque<T> {
 			this.current.setNext(null);
 			this.size--;
 		}
-
-		// throw new UnsupportedOperationException();
 	}
 
 	public T left() {
@@ -89,7 +78,6 @@ public class LinkedDeque<T> {
 			throw new IllegalStateException("Cannot return element from empty deque.");
 		}
 		return this.head.getValue();
-		// throw new UnsupportedOperationException();
 	}
 
 	public T right() {
@@ -97,29 +85,21 @@ public class LinkedDeque<T> {
 			throw new IllegalStateException("Cannot return element from empty deque.");
 		}
 		return this.current.getValue();
-		// throw new UnsupportedOperationException();
 	}
 
 	public int size() {
 		return this.size;
-		// throw new UnsupportedOperationException();
 	}
 
 	public String toString() {
 
-		StringBuilder output = new StringBuilder("[");
+		String output = new String("");
 		Node<T> stringNode = this.head;
 		for(int i = 0; i < this.size; i++){
-			output.append(stringNode.getValue().toString());
-			if(i < this.size - 1){
-				output.append(", ");
-			}
+			output = output + "[" + stringNode.getValue().toString() + "]";
 			stringNode = stringNode.getNext();
 		}
-		output.append("]");
-		return output.toString();
-
-		// throw new UnsupportedOperationException();
+		return output;
 	}
 
 	public static void main(String[] args) {
@@ -163,7 +143,6 @@ public class LinkedDeque<T> {
 		lDeque.deleteRight();
 		System.out.println(lDeque.toString());
 		System.out.println("Size: " + lDeque.size());
-
 		
 		// System.out.println(lDeque.left());
 		// System.out.println(lDeque.right());
@@ -211,6 +190,5 @@ public class LinkedDeque<T> {
 			}
 			return true;
 		}
-
 	}
 }
