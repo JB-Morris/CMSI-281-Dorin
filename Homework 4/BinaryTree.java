@@ -295,6 +295,41 @@ public class BinaryTree implements java.lang.Iterable{
 			testCounter++;	
 		}
 		test(testBool && (testCounter == 5));
+		testCounter = 0;
+		testBool = true;
+
+		System.out.println("Testing pruneFromCursor()");
+
+		testTree.pruneFromCursor();
+		preOrderArray = new int[]{0,2};
+		for(Object o : testTree){
+			if(!(o.equals(preOrderArray[testCounter]))){
+				testBool = false;
+			}
+			testCounter++;
+		}
+		test(testBool && (testCounter == 2));
+		testBool = true;
+		testCounter = 0;
+
+		System.out.println("Testing testing in order iterator (2)");
+
+		inOrderArray = new int[]{0,2};
+		iNterator = testTree.inOrder();
+
+		while(iNterator.hasNext()){
+			// System.out.println(iNterator.next());
+			if(!(iNterator.next().equals(inOrderArray[testCounter]))){
+				testBool = false;
+			}
+			testCounter++;
+		}
+		test(testBool && (testCounter == 2));
+		testCounter = 0;
+		testBool = true;
+
+
+
 
 
 	}
@@ -531,10 +566,10 @@ public class BinaryTree implements java.lang.Iterable{
 				if(!(this.next.hasLeftSon()) && !(this.next.hasRightSon())){
 					n = this.next;
 					while(this.next.getFather().getRightSon() == this.next){
-						if(!(this.next.hasFather())){
-							this.next = null;
-							return n.getData();
-						}
+						// if(!(this.next.hasFather())){
+						// 	this.next = null;
+						// 	return n.getData();
+						// }
 						if(!(this.next.getFather().hasFather())){
 							this.next = null;
 							return n.getData();
