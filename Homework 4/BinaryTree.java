@@ -276,9 +276,10 @@ public class BinaryTree implements java.lang.Iterable{
 		InIterator iNterator = testTree.inOrder();
 
 		while(iNterator.hasNext()){
-			if(!(iNterator.next().equals(inOrderArray[testCounter]))){
-				testBool = false;
-			}
+			System.out.println(iNterator.next());
+			// if(!(iNterator.next().equals(inOrderArray[testCounter]))){
+			// 	testBool = false;
+			// }
 			testCounter++;
 		}
 		test(testBool);
@@ -317,18 +318,22 @@ public class BinaryTree implements java.lang.Iterable{
 
 		public void setRightSon(Node rs){
 			this.rightSon = rs;
+			rs.setFather(this);
 		}
 
 		public void setRightSon(Object obj){
 			this.rightSon = new Node(obj);
+			this.rightSon.setFather(this);
 		}
 
 		public void setLeftSon(Node ls){
 			this.leftSon = ls;
+			ls.setFather(this);
 		}
 
 		public void setLeftSon(Object obj){
 			this.leftSon = new Node(obj);
+			this.leftSon.setFather(this);
 		}
 
 		public void clear(){
@@ -461,6 +466,30 @@ public class BinaryTree implements java.lang.Iterable{
 
 	}
 
+	// private class InIterator implements java.util.Iterator{
+	// 	// INorder traversal (symetric order)
+	// 	private Node next;
+
+	// 	public InIterator(BinaryTree tree){
+	// 		this.next = tree.root;
+	// 		if(this.next)
+			
+	// 	}
+
+	// 	public boolean hasNext(){
+	// 		return next != null;
+	// 	}
+
+	// 	public Object next(){
+			
+	// 	}
+
+	// 	public void remove(){
+	// 		throw new UnsupportedOperationException();
+	// 	}
+
+	// }
+
 	private class InIterator implements java.util.Iterator{
 		// INorder traversal (symetric order)
 		private Node next;
@@ -483,20 +512,35 @@ public class BinaryTree implements java.lang.Iterable{
 			if(!(hasNext())){
 				throw new IllegalStateException("No more nodes.");
 			}
-			Node n = next;
-			if(next.hasRightSon()){
-				next = next.getRightSon();
+			Node n = this.next;
+			if(this.next.hasRightSon()){
+				this.next = this.next.getRightSon();
 				while(next.hasLeftSon()){
-					next = next.getLeftSon();
-				}return n.getData();
+					this.next = this.next.getLeftSon();
+				}
+				return n.getData();
 			}else while(true){
 				if(!(next.hasFather())){
-					next = null;
+					this.next = null;
 					return n.getData();
 				}
 				if(next.getFather().getLeftSon() == next){
-					next = next.getFather();
+					this.next = this.next.getFather();
 					return n.getData();
+				}
+				if(!(this.next.hasLeftSon()) && !(this.next.hasRightSon())){
+					n = this.next;
+					while(this.next.getFather().getRightSon() == this.next){
+						if(!(this.next.hasFather())){
+							this.next = null;
+							return n.getData();
+						}
+						if(!(this.next.getFather().hasFather())){
+							this.next = null;
+							return n.getData();
+						}
+						this.next = this.next.getFather();
+					}
 				}
 			}
 		}
@@ -506,7 +550,6 @@ public class BinaryTree implements java.lang.Iterable{
 		}
 
 	}
-
 }
 
 // questions:
