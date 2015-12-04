@@ -140,6 +140,7 @@ public class BinaryTree implements java.lang.Iterable{
 		if(this.root == null){
 			this.root = new Node(obj);
 			this.cursor = this.root;
+			this.size++;
 			return true;
 		}
 		if(!(this.cursor.hasLeftSon())){
@@ -155,6 +156,7 @@ public class BinaryTree implements java.lang.Iterable{
 		if(this.root == null){
 			this.root = new Node(obj);
 			this.cursor = this.root;
+			this.size++;
 			return true;
 		}
 		if(!(this.cursor.hasRightSon())){
@@ -312,7 +314,7 @@ public class BinaryTree implements java.lang.Iterable{
 		testBool = true;
 		testCounter = 0;
 
-		System.out.println("Testing testing in order iterator (2)");
+		System.out.println("Testing in order iterator (2)");
 
 		inOrderArray = new int[]{0,2};
 		iNterator = testTree.inOrder();
@@ -328,9 +330,28 @@ public class BinaryTree implements java.lang.Iterable{
 		testCounter = 0;
 		testBool = true;
 
+		System.out.println("Testing size() and pruneFromCursor()");
 
+		test(testTree.size() == 2);
+		test(testTree2.size() == 5);
 
+		testTree.putCursorAtRightSon();
+		testTree.attachLeftSonAtCursor(5);
+		testTree.attachRightSonAtCursor(6);
 
+		test(testTree.size() == 4);
+
+		testTree.putCursorAtFather();
+		testTree.attachLeftSonAtCursor(7);
+		testTree.putCursorAtLeftSon();
+		testTree.attachLeftSonAtCursor(8);
+
+		test(testTree.size() == 6);
+
+		testTree.attachRightSonAtCursor(9);
+		testTree.pruneFromCursor();
+
+		test(testTree.size() == 4);
 
 	}
 
