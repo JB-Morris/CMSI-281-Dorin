@@ -8,7 +8,7 @@ public class WordFrequencies extends java.lang.Object {
 	public WordFrequencies(){
 	}
 	public static void main(String[] args){
-		boolean sOption = false;
+		boolean sOption = true;
 		boolean cOption = false;
 		if(args.length > 0){
 			if(args.length > 1){
@@ -17,7 +17,7 @@ public class WordFrequencies extends java.lang.Object {
 			if(args[0].equals("-c")){
 				cOption = true;
 			}else if(args[0].equals("-s")){
-				sOption = true;
+				sOption = false;
 			}
 		}
 		HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
@@ -28,7 +28,7 @@ public class WordFrequencies extends java.lang.Object {
 			String[] currentArray = current.split(" ");
 			for(String s : currentArray){
 				if(sOption){
-					s = s.toLowerCase();
+					s = s.toUpperCase();
 				}
 				if(s.length() > 0){
 					if(hashMap.containsKey(s)){
