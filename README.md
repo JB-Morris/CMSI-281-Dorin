@@ -3,4 +3,5 @@ BaseConverter: 28/30
 NumberList: 34/47
 
 LinkedDeque: 33/35
-BinaryTree: 40/45
+
+BinaryTree: 39/45
