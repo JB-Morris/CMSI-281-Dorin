@@ -5,3 +5,5 @@ NumberList: 34/47
 LinkedDeque: 33/35
 
 BinaryTree: 39/45
+
+WordFrequencies: 35/35
